@@ -1,0 +1,88 @@
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+    .tradingview-widget-container{position: relative; margin: 7% auto;}
+    </style>
+    <title>Welcome</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel = "icon" href = "images/favicon.png"> 
+</head>
+<body>
+      <nav> 
+        <div class="nav-left">
+          <img src="images/image6.png" class="logo">
+        </div>
+        <div class="nav-right">
+          <div class="nav-user-icon">
+           <img src="images/crown3.png">
+           <img src="images/bank.png">
+           <img src="images/user.png">
+          </div> 
+        </div>
+      </nav>
+<div class="select" tabindex="1">
+  <input class="selectopt" name="test" type="radio" id="opt1" checked>
+  <label for="opt1" class="option">Oranges</label>
+  <input class="selectopt" name="test" type="radio" id="opt2">
+  <label for="opt2" class="option">Apples</label>
+  <input class="selectopt" name="test" type="radio" id="opt3">
+  <label for="opt3" class="option">Grapefruit</label>
+  <input class="selectopt" name="test" type="radio" id="opt4">
+  <label for="opt4" class="option">Bananas</label>
+  <input class="selectopt" name="test" type="radio" id="opt5">
+  <label for="opt5" class="option">Watermelon</label>
+</div>
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Stocks</span></a> by TradingView</div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
+  {
+  "width": 770,
+  "height": 450,
+  "symbolsGroups": [
+    {
+      "name": "Stocks",
+      "symbols": [
+        {
+          "name": "NYSE:GME",
+          "displayName": "Gamestop"
+        },
+        {
+          "name": "NASDAQ:AAPL",
+          "displayName": "Apple"
+        },
+        {
+          "name": "NASDAQ:MSFT",
+          "displayName": "Microsoft"
+        }
+      ]
+    }
+  ],
+  "showSymbolLogo": true,
+  "colorTheme": "light",
+  "isTransparent": false,
+  "locale": "en",
+  "largeChartUrl": "http://localhost/attempt%202/chart.php"
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+  </script>
+</div>
+</body>
+</html>
